@@ -1040,6 +1040,7 @@ int main(int argc, char** argv)
     int just_once = 0;
     int is_client = 0;
     int ret;
+    int en = 1;
 
 #ifdef _WINDOWS
     WSADATA wsaData = { 0 };
@@ -1047,9 +1048,6 @@ int main(int argc, char** argv)
 #endif
     picoquic_config_init(&config);
     memcpy(option_string, "A:u:f:1d", 8);
-
-    /* TEST */
-    config->local_parameters.min_ack_delay = 0;
 
     ret = picoquic_config_option_letters(option_string + 8, sizeof(option_string) - 8, NULL);
 
@@ -1079,8 +1077,7 @@ int main(int argc, char** argv)
                 printf("config.multipath_alt_config: %s\n", config.multipath_alt_config);
                 break;
             case 'd':
-                config.delayed_ack_negotiation_option = malloc(sizeof(int)); 
-                memcpy(config.delayed_ack_negotiation_option, 1, sizeof(int));
+                config.delayed_ack_negotiation_option = en;
                 printf("Delayed ACK negotiation enabled");
                 break;
             default:
