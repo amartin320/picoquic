@@ -918,19 +918,6 @@ int picoquic_receive_transport_extensions(picoquic_cnx_t* cnx, int extension_mod
                     break;
                 }
 
-                case picoquic_tp_enable_bdp_frame: {
-                    uint64_t enable_bdp =
-                        picoquic_transport_param_varint_decode(cnx, bytes + byte_index, extension_length, &ret);
-                    if (ret == 0) {
-                        if (enable_bdp > 1) {
-                            ret = picoquic_connection_error_ex(cnx, PICOQUIC_TRANSPORT_PARAMETER_ERROR, 0, "BDP parameter");
-                        }
-                        else {
-                            cnx->remote_parameters.enable_bdp_frame = (int)enable_bdp;
-                        }
-                    }
-                    break;
-                }
                 default:
                     /* ignore unknown extensions */
                     break;
