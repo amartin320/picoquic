@@ -2281,8 +2281,8 @@ static uint64_t picoquic_compute_ack_gap(picoquic_cnx_t* cnx, uint64_t data_rate
         }
     }
 
-    if(ack_gap_max > 2) {
-        ack_gap_max = 2;
+    if(ack_gap > 2) {
+        ack_gap = 2;
     }
 
     return ack_gap;
