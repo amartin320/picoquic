@@ -1168,6 +1168,7 @@ void picoquic_init_transport_parameters(picoquic_tp_t* tp, int client_mode)
     tp->min_ack_delay = PICOQUIC_ACK_DELAY_MIN;
     tp->enable_time_stamp = 0;
     tp->enable_bdp_frame = 0;
+    tp->enable_ack_frequency = 0;
 }
 
 
@@ -3131,7 +3132,6 @@ picoquic_cnx_t* picoquic_create_cnx(picoquic_quic_t* quic,
         /* Initialize ACK frequency negotiation transport parameter */
         if (quic->default_send_receive_ack_frequency_frame) {
             /* Accept and send ACK frequency extension frame */
-            printf("HERE");
             cnx->local_parameters.enable_ack_frequency = 1;
         }
  
