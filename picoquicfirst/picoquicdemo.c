@@ -1040,7 +1040,7 @@ int main(int argc, char** argv)
     int just_once = 0;
     int is_client = 0;
     int ret;
-    int en = 1;
+    int enable_ack_negotiation;
 
 #ifdef _WINDOWS
     WSADATA wsaData = { 0 };
@@ -1077,8 +1077,15 @@ int main(int argc, char** argv)
                 printf("config.multipath_alt_config: %s\n", config.multipath_alt_config);
                 break;
             case 'd':
-                config.delayed_ack_negotiation_option = en;
-                printf("Delayed ACK negotiation enabled");
+                enable_ack_negotiation = atoi(optarg);
+                if (enable_ack_negotiation <= 0 || enable_ack_negotiation > 1) {
+                    config.delayed_ack_negotiation_option = enable_ack_negotiation;
+                    if(enable_ack_negotiation == 1) {
+                        printf("ACK negotiation enabled");
+                    } else if (enable_ack_negotiation == 0) {
+                        printf("ACK negotiation disabled");
+                    }
+                }
                 break;
             default:
                 if (picoquic_config_command_line(opt, &optind, argc, (char const **)argv, optarg, &config) != 0) {

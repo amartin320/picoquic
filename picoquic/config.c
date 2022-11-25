@@ -94,7 +94,6 @@ static option_table_line_t option_table[] = {
     { picoquic_option_Version_Upgrade, 'U', "version_upgrade", 1, "", "Version upgrade if server agrees, e.g. -U FF020000" },
     { picoquic_option_No_GSO, '0', "no_gso", 0, "", "Do not use UDP GSO or equivalent" },
     { picoquic_option_BDP_frame, 'j', "bdp", 1, "number", "use bdp extension frame(1) or don\'t (0). Default=0" },
-    { picoquic_option_Delayed_ACK_negotiation, 'd', "ack", 1, "number", "enable delayed ack negotiation (1) or don\'t (0). Default=1" },
     { picoquic_option_HELP, 'h', "help", 0, "This help message" }
 };
 
@@ -505,17 +504,7 @@ static int config_set_option(option_table_line_t* option_desc, option_param_t* p
         }
         break;
     }
-    case picoquic_option_Delayed_ACK_negotiation: {
-        int v = config_atoi(params, nb_params, 0, &ret);
-        if (ret != 0 || v < 0 || v > 1) {
-            fprintf(stderr, "Invalid delayed ack option: %s\n", config_optval_param_string(opval_buffer, 256, params, nb_params, 0));
-            ret = (ret == 0) ? -1 : ret;
-        }
-        else {
-            config->delayed_ack_negotiation_option = v;
-        }
-        break;
-    }
+
     case picoquic_option_HELP:
         ret = -1;
         break;
