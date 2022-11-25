@@ -2236,7 +2236,6 @@ static uint64_t picoquic_compute_ack_gap(picoquic_cnx_t* cnx, uint64_t data_rate
 {
     uint64_t ack_gap;
     uint64_t ack_gap_min = 2;
-    uint64_t ack_gap_max = 2;
 
     if (cnx->is_ack_frequency_negotiated && !cnx->path[0]->is_ssthresh_initialized) {
         nb_packets /= 2;
@@ -2366,6 +2365,10 @@ void picoquic_compute_ack_gap_and_delay(picoquic_cnx_t* cnx, uint64_t rtt, uint6
                 }
             }
         }
+    }
+
+    if(ack_gap > 2) {
+        ack_gap = 2;
     }
 }
 
