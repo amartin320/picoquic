@@ -1081,7 +1081,8 @@ int main(int argc, char** argv)
             case 'd':
                 config.delayed_ack_negotiation_option = malloc(sizeof(int)); 
                 memcpy(config.delayed_ack_negotiation_option, 1, sizeof(int));
-                printf("Delayed ACK negotiation enabled")
+                printf("Delayed ACK negotiation enabled");
+                break;
             default:
                 if (picoquic_config_command_line(opt, &optind, argc, (char const **)argv, optarg, &config) != 0) {
                     usage();
