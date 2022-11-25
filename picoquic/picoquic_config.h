@@ -72,6 +72,7 @@ typedef enum {
     picoquic_option_Version_Upgrade,
     picoquic_option_No_GSO,
     picoquic_option_BDP_frame,
+    picoquic_option_Delayed_ACK_negotiation,
     picoquic_option_HELP
 }  picoquic_option_enum_t;
 
