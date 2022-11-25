@@ -1049,7 +1049,7 @@ int main(int argc, char** argv)
     memcpy(option_string, "A:u:f:1", 7);
 
     /* TEST */
-    config.local_parameters.min_ack_delay = 0
+    config -> local_parameters.min_ack_delay = 0;
 
     ret = picoquic_config_option_letters(option_string + 7, sizeof(option_string) - 7, NULL);
 
