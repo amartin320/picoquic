@@ -26,7 +26,7 @@
 #include "picoquic_utils.h"
 #include "picoquic_config.h"
 
-static char* ref_option_text = "c:k:K:p:v:o:w:x:rR:s:XS:G:P:O:M:e:C:E:i:l:Lb:q:m:n:a:t:zI:DQT:N:B:F:VU:0j:h";
+static char* ref_option_text = "c:k:K:p:v:o:w:x:rR:s:XS:G:P:O:M:e:C:E:i:l:Lb:q:m:n:a:t:zI:DQT:N:B:F:VU:0j:h:d";
 
 int config_option_letters_test()
 {
@@ -66,7 +66,8 @@ static picoquic_quic_config_t param1 = {
     2,
     3,
     "127.0.0.1",
-    1,
+    1, /* bdp frame option */
+    1, /* delayed ACK negotiation option */
     /* Common flags */
     1, /* unsigned int initial_random : 1; */
     1, /* unsigned int use_long_log : 1; */
