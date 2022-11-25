@@ -1078,12 +1078,13 @@ int main(int argc, char** argv)
                 break;
             case 'd':
                 enable_ack_negotiation = atoi(optarg);
-                if (enable_ack_negotiation <= 0 || enable_ack_negotiation > 1) {
+                if (enable_ack_negotiation == 0 || enable_ack_negotiation == 1) {
                     config.delayed_ack_negotiation_option = enable_ack_negotiation;
+
                     if(enable_ack_negotiation == 1) {
-                        printf("ACK negotiation enabled");
+                        printf("ACK negotiation enabled\n");
                     } else if (enable_ack_negotiation == 0) {
-                        printf("ACK negotiation disabled");
+                        printf("ACK negotiation disabled\n");
                     }
                 }
                 break;
