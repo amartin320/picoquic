@@ -3643,7 +3643,7 @@ int picoquic_prepare_packet_almost_ready(picoquic_cnx_t* cnx, picoquic_path_t* p
                                 &more_data, &is_pure_ack);
                         }
 
-                        if (cnx->is_ack_frequency_updated && cnx->is_ack_frequency_negotiated) {
+                        if (cnx->local_parameters.enable_ack_frequency && cnx->is_ack_frequency_updated && cnx->is_ack_frequency_negotiated) {
                             bytes_next = picoquic_format_ack_frequency_frame(cnx, bytes_next, bytes_max, &more_data);
                         }
 
