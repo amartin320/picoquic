@@ -868,7 +868,7 @@ picoquic_quic_t* picoquic_create_and_configure(picoquic_quic_config_t* config,
         }
 
         picoquic_set_default_bdp_frame_option(quic, config->bdp_frame_option);
-        picoquic_set_default_delayed_ack_negotiation_option(quic, config->bdp_frame_option);
+        picoquic_set_default_delayed_ack_negotiation_option(quic, config->ack_frequency_frame_option);
 
         if (ret != 0) {
             /* Something went wrong */

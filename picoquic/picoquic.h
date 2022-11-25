@@ -282,6 +282,7 @@ typedef struct st_picoquic_tp_t {
     int enable_multipath;
     picoquic_tp_version_negotiation_t version_negotiation;
     int enable_bdp_frame;
+    int enable_ack_frequency_frame;
 } picoquic_tp_t;
 
 /*
@@ -609,6 +610,9 @@ int picoquic_save_retry_tokens(picoquic_quic_t* quic, char const* token_store_fi
 
 /* Manage bdps */
 void picoquic_set_default_bdp_frame_option(picoquic_quic_t* quic, int enable_bdp_frame);
+
+/* Manage delayed ACK frequency negotiation */
+void picoquic_set_default_delayed_ack_negotiation_option(picoquic_quic_t* quic, int enable_ack_frequency_frame);
 
 /* Set default connection ID length for the context.
  * All valid values are supported on the client.
