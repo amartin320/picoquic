@@ -622,6 +622,7 @@ void picoquic_clear_transport_extensions(picoquic_cnx_t* cnx)
     cnx->remote_parameters.min_ack_delay = 0;
     cnx->remote_parameters.do_grease_quic_bit = 0;
     cnx->remote_parameters.enable_bdp_frame = 0;
+    cnx->remote_parameters.enable_ack_frequency = 0;
 }
 
 int picoquic_receive_transport_extensions(picoquic_cnx_t* cnx, int extension_mode,
@@ -916,6 +917,20 @@ int picoquic_receive_transport_extensions(picoquic_cnx_t* cnx, int extension_mod
                     }
                     break;
                 }
+
+                case picoquic_tp_enable_bdp_frame: {
+                    uint64_t enable_bdp =
+                        picoquic_transport_param_varint_decode(cnx, bytes + byte_index, extension_length, &ret);
+                    if (ret == 0) {
+                        if (enable_bdp > 1) {
+                            ret = picoquic_connection_error_ex(cnx, PICOQUIC_TRANSPORT_PARAMETER_ERROR, 0, "BDP parameter");
+                        }
+                        else {
+                            cnx->remote_parameters.enable_bdp_frame = (int)enable_bdp;
+                        }
+                    }
+                    break;
+                }
                 default:
                     /* ignore unknown extensions */
                     break;
@@ -1031,6 +1046,9 @@ int picoquic_receive_transport_extensions(picoquic_cnx_t* cnx, int extension_mod
 
     /* Send-receive BDP frame is only enabled if negotiated by both parties */
     cnx->send_receive_bdp_frame = (cnx->local_parameters.enable_bdp_frame > 0) && (cnx->remote_parameters.enable_bdp_frame > 0);
+
+    /* Send-receive ACK frequency frames if only enabled by both parties */
+    cnx->default_send_receive_ack_frequency_frame = (cnx->local_parameters.enable_ack_frequency > 0) && (cnx->remote_parameters.enable_ack_frequency > 0);
 
     /* One way delay, Quic_bit_grease and Multipath only enabled if asked by client and accepted by server */
     if (cnx->client_mode) {
