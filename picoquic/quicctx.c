@@ -767,6 +767,11 @@ void picoquic_set_default_bdp_frame_option(picoquic_quic_t* quic, int bdp_option
     quic->default_send_receive_bdp_frame = bdp_option;
 }
 
+void picoquic_set_default_delayed_ack_negotiation_option(picoquic_quic_t* quic, int delayed_ack_negotiation_option)
+{
+    quic->default_send_receive_ack_frequency_frame = delayed_ack_negotiation_option;
+}
+
 void picoquic_free(picoquic_quic_t* quic)
 {
     if (quic != NULL) {
@@ -3121,6 +3126,12 @@ picoquic_cnx_t* picoquic_create_cnx(picoquic_quic_t* quic,
         if (quic->default_send_receive_bdp_frame) {
            /* Accept and send BDP extension frame */
             cnx->local_parameters.enable_bdp_frame = 1;
+        }
+
+        /* Initialize ACK frequency negotiation transport parameter */
+        if (quic->default_send_receive_ack_frequency_frame) {
+           /* Accept and send ACK frequency extension frame */
+            cnx->local_parameters.enable_ack_frequency = 1;
         }
  
         /* Initialize local flow control variables to advertised values */

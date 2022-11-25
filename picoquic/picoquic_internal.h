@@ -642,6 +642,7 @@ typedef struct st_picoquic_quic_t {
     unsigned int use_low_memory : 1; /* if possible, use low memory alternatives, e.g. for AES */
     unsigned int is_preemptive_repeat_enabled : 1; /* enable premptive repeat on new connections */
     unsigned int default_send_receive_bdp_frame : 1; /* enable sending and receiving BDP frame */
+    unsigned int default_send_receive_ack_frequency_frame : 1; /* enable sending and receiving ACK frequency frames */
     unsigned int enforce_client_only : 1; /* Do not authorize incoming connections */
     unsigned int is_flow_control_limited : 1; /* Enforce flow control limit for tests */
     unsigned int test_large_server_flight : 1; /* Use TP to ensure server flight is at least 8K */
