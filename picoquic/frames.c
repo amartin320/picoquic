@@ -2367,8 +2367,8 @@ void picoquic_compute_ack_gap_and_delay(picoquic_cnx_t* cnx, uint64_t rtt, uint6
         }
     }
 
-    if(ack_gap > 2) {
-        ack_gap = 2;
+    if(*ack_gap > 2) {
+        *ack_gap = 2;
     }
 }
 
