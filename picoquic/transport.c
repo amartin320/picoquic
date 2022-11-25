@@ -1034,9 +1034,6 @@ int picoquic_receive_transport_extensions(picoquic_cnx_t* cnx, int extension_mod
     /* Send-receive BDP frame is only enabled if negotiated by both parties */
     cnx->send_receive_bdp_frame = (cnx->local_parameters.enable_bdp_frame > 0) && (cnx->remote_parameters.enable_bdp_frame > 0);
 
-    /* Send-receive ACK frequency frames if only enabled by both parties */
-    cnx->default_send_receive_ack_frequency_frame = (cnx->local_parameters.enable_ack_frequency > 0) && (cnx->remote_parameters.enable_ack_frequency > 0);
-
     /* One way delay, Quic_bit_grease and Multipath only enabled if asked by client and accepted by server */
     if (cnx->client_mode) {
         cnx->is_time_stamp_enabled = 
