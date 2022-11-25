@@ -3130,7 +3130,8 @@ picoquic_cnx_t* picoquic_create_cnx(picoquic_quic_t* quic,
 
         /* Initialize ACK frequency negotiation transport parameter */
         if (quic->default_send_receive_ack_frequency_frame) {
-           /* Accept and send ACK frequency extension frame */
+            /* Accept and send ACK frequency extension frame */
+            printf("HERE");
             cnx->local_parameters.enable_ack_frequency = 1;
         }
  

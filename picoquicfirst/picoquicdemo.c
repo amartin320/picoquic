@@ -1006,6 +1006,7 @@ void usage()
     fprintf(stderr, "                        -f 2  test CNXID renewal,\n");
     fprintf(stderr, "                        -f 3  test migration to new address.\n");
     fprintf(stderr, "  -u nb                 trigger key update after receiving <nb> packets on client\n");
+    fprintf(stderr, "  -d enable             enable delayed ack frequency extension (0: enable, 1: disable)\n");
     fprintf(stderr, "  -1                    Once: close the server after processing 1 connection.\n");
 
     fprintf(stderr, "\nThe scenario argument specifies the set of files that should be retrieved,\n");
