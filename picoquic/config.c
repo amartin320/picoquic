@@ -939,9 +939,6 @@ void picoquic_config_clear(picoquic_quic_config_t* config)
     {
         free((void*)config->multipath_alt_config);
 
-    if (config->delayed_ack_negotiation_option != NULL)
-    {
-        free((void*)config->delayed_ack_negotiation_option);
     }
     if (config->www_dir != NULL)
     {
