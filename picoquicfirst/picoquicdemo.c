@@ -1047,7 +1047,7 @@ int main(int argc, char** argv)
     (void)WSA_START(MAKEWORD(2, 2), &wsaData);
 #endif
     picoquic_config_init(&config);
-    memcpy(option_string, "A:u:f:1d", 8);
+    memcpy(option_string, "d:A:u:f:1", 8);
 
     ret = picoquic_config_option_letters(option_string + 8, sizeof(option_string) - 8, NULL);
 
