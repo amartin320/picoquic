@@ -100,6 +100,7 @@ typedef struct st_picoquic_quic_config_t {
     int multipath_option;
     char *multipath_alt_config;
     int bdp_frame_option;
+    int delayed_ack_negotiation_option;
     /* TODO: control other extensions, e.g. time stamp, ack delay */
     /* Common flags */
     unsigned int initial_random;
