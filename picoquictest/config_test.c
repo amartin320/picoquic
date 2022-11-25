@@ -151,6 +151,7 @@ static picoquic_quic_config_t param2 = {
     0,
     "127.0.0.1",
     0,
+    0,
     /* Common flags */
     3, /* unsigned int initial_random : 1; */
     0, /* unsigned int use_long_log : 1; */
