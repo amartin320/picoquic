@@ -1043,6 +1043,7 @@ int main(int argc, char** argv)
     int ret;
     int enable_ack_negotiation;
 
+
 #ifdef _WINDOWS
     WSADATA wsaData = { 0 };
     (void)WSA_START(MAKEWORD(2, 2), &wsaData);
@@ -1084,8 +1085,10 @@ int main(int argc, char** argv)
 
                     if(enable_ack_negotiation == 1) {
                         printf("ACK negotiation enabled\n");
+                        
                     } else if (enable_ack_negotiation == 0) {
                         printf("ACK negotiation disabled\n");
+
                     }
                 }
                 break;
