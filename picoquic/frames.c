@@ -2280,9 +2280,6 @@ static uint64_t picoquic_compute_ack_gap(picoquic_cnx_t* cnx, uint64_t data_rate
         }
     }
 
-    /* TEST - Override ack_gap to static value */
-    ack_gap = 3;
-
     return ack_gap;
 }
 
@@ -2365,9 +2362,6 @@ void picoquic_compute_ack_gap_and_delay(picoquic_cnx_t* cnx, uint64_t rtt, uint6
             }
         }
     }
-
-    /* TEST - Override ack_gap to static value */
-    *ack_gap = 3;
     
 }
 
